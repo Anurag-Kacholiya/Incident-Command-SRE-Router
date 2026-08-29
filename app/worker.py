@@ -167,7 +167,7 @@ Important Rules:
             f.write(f"Final Severity: {severity}\n\n")
 
         # Step 6: Delivery Layer & SLA Watchdog Preparation
-        if severity in ["SEV1", "SEV2"]:
+        if severity in ["SEV1", "SEV2", "SEV3"]:
             incident_id = str(uuid.uuid4())
             incident_data = {
                 "id": incident_id,
@@ -210,7 +210,7 @@ Important Rules:
             f.write(f"Final Severity: {severity}\n\n")
 
         # Delivery Layer & SLA Watchdog Preparation (Same as primary path)
-        if severity in ["SEV1", "SEV2"]:
+        if severity in ["SEV1", "SEV2", "SEV3"]:
             incident_id = str(uuid.uuid4())
             incident_data = {
                 "id": incident_id,

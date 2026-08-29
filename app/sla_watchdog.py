@@ -11,10 +11,10 @@ r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
 
 # SLA Definitions (in seconds for hackathon demo purposes)
 SLA_THRESHOLDS = {
-    "SEV1": 10,
-    "SEV2": 30,
-    "SEV3": 120,
-    "SEV4": 300
+    "SEV1": 20,
+    "SEV2": 40,
+    "SEV3": 60,
+    "SEV4": 120
 }
 
 def escalate_incident(incident):
