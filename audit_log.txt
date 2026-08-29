@@ -1,0 +1,949 @@
+--- Timestamp: 1787992662.5494497 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>4</count>
+    <sample_alert_id>8c4ba04d-a5ef-4610-8c64-f3a25756e25d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 504 Gateway Timeout</signature>
+    <count>2</count>
+    <sample_alert_id>b1aff883-febd-4c21-a92a-4f53ffda5f69</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>database: P0: OOM Killed</signature>
+    <count>4</count>
+    <sample_alert_id>cc0bb17c-73d3-46f3-b09a-9a711b683872</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>2</count>
+    <sample_alert_id>4e199450-4165-455f-bb75-f9ed7c2888de</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: ConnectionPoolTimeout</signature>
+    <count>6</count>
+    <sample_alert_id>240e1771-223f-4b90-b358-9c01e878c08f</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.92,
+  "cited_alert_ids": [
+    "cc0bb17c-73d3-46f3-b09a-9a711b683872",
+    "240e1771-223f-4b90-b358-9c01e878c08f",
+    "b1aff883-febd-4c21-a92a-4f53ffda5f69",
+    "4e199450-4165-455f-bb75-f9ed7c2888de",
+    "8c4ba04d-a5ef-4610-8c64-f3a25756e25d"
+  ],
+  "summary": "Critical database OOM kills, payment API connection pool timeouts, auth-service 504s, and other service failures are causing a major outage."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787992669.0860271 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>1</count>
+    <sample_alert_id>e07e3c2a-c08e-4498-84a4-b725120fd793</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>1</count>
+    <sample_alert_id>e583ca4c-b345-4a87-90ee-cb3a2c86d590</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.92,
+  "cited_alert_ids": [
+    "e07e3c2a-c08e-4498-84a4-b725120fd793",
+    "e583ca4c-b345-4a87-90ee-cb3a2c86d590"
+  ],
+  "summary": "Redis cache connection refused is disrupting services, accompanied by a frontend JavaScript TypeError."
+}
+Final Severity: SEV2
+
+--- Timestamp: 1787998300.979611 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>3</count>
+    <sample_alert_id>d9860fdb-3320-48e2-966d-c9b1848308a3</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: ConnectionPoolTimeout while using api_key=[REDACTED_SECRET]</signature>
+    <count>5</count>
+    <sample_alert_id>16d9e52f-8958-4778-a234-e7f15a1d7458</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>4</count>
+    <sample_alert_id>37269c56-2137-43b2-9022-5544d342e54a</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 504 Gateway Timeout (user: [REDACTED_EMAIL])</signature>
+    <count>1</count>
+    <sample_alert_id>7ad41ec7-6e66-418c-9aa2-a554c7937f3d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>database: P0: OOM Killed near IP [REDACTED_IP]</signature>
+    <count>4</count>
+    <sample_alert_id>96fdd31a-bed4-4240-a404-dc8a87a82256</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.92,
+  "cited_alert_ids": [
+    "96fdd31a-bed4-4240-a404-dc8a87a82256",
+    "37269c56-2137-43b2-9022-5544d342e54a",
+    "16d9e52f-8958-4778-a234-e7f15a1d7458",
+    "7ad41ec7-6e66-418c-9aa2-a554c7937f3d"
+  ],
+  "summary": "Multiple critical services (database, Redis cache, payment API, and auth) are experiencing failures causing a platform-wide outage."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787998308.0232642 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>1</count>
+    <sample_alert_id>56b15061-3e3f-467d-8712-ed39aa7bc58f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>1</count>
+    <sample_alert_id>af6f831c-e733-4040-9194-05c971287cf2</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>database: P0: OOM Killed near IP [REDACTED_IP]</signature>
+    <count>1</count>
+    <sample_alert_id>c8f1662f-8986-4969-ae87-f98254f961e7</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.9,
+  "cited_alert_ids": [
+    "56b15061-3e3f-467d-8712-ed39aa7bc58f",
+    "af6f831c-e733-4040-9194-05c971287cf2",
+    "c8f1662f-8986-4969-ae87-f98254f961e7"
+  ],
+  "summary": "Database OOM kill and Redis connection failures are causing a critical service outage."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787998779.1571052 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>payment-api: ConnectionPoolTimeout while using api_key=[REDACTED_SECRET]</signature>
+    <count>1</count>
+    <sample_alert_id>c8be1a23-fd45-476a-9c7d-dd04f33f22fa</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>database: P0: OOM Killed near IP [REDACTED_IP]</signature>
+    <count>1</count>
+    <sample_alert_id>bd87f682-af99-4a1e-871a-90721a09cead</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>1</count>
+    <sample_alert_id>93989ca4-36e9-477a-bf7b-8def369688f1</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.9,
+  "cited_alert_ids": [
+    "c8be1a23-fd45-476a-9c7d-dd04f33f22fa",
+    "bd87f682-af99-4a1e-871a-90721a09cead",
+    "93989ca4-36e9-477a-bf7b-8def369688f1"
+  ],
+  "summary": "Multiple critical services (payment API, database, and Redis cache) are experiencing failures, indicating a severe outage."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787998818.7902155 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>15</count>
+    <sample_alert_id>be343c4f-fe40-4420-b842-dbfc1e8dc313</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>nginx-ingress: HTTP 304 Not Modified</signature>
+    <count>13</count>
+    <sample_alert_id>57b5d979-1277-4656-bc02-91fb7dade314</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>11</count>
+    <sample_alert_id>c0a0f2bf-331d-4798-9d2d-23e5ffdedc2b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Memory usage at 45%</signature>
+    <count>12</count>
+    <sample_alert_id>061c86c2-670b-4a96-bf97-1309d52c6fa5</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>11</count>
+    <sample_alert_id>ceaf9d65-3a6a-4045-9339-2080adb32b2b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>inventory-svc: Stock sync successful</signature>
+    <count>11</count>
+    <sample_alert_id>e57528b2-fb5c-4357-a8a8-a65f5cadfc04</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>kafka-broker: Consumer group rebalanced</signature>
+    <count>14</count>
+    <sample_alert_id>4c3efc31-a1ec-459b-b529-6f7149de049f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: Healthcheck passed</signature>
+    <count>14</count>
+    <sample_alert_id>a6e7ab11-baaf-4083-ba1f-b7240c3b64ff</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 500 Internal Server Error: DB connection failed</signature>
+    <count>5</count>
+    <sample_alert_id>368d637a-9013-4045-b12d-6c3e5cfda202</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: 500 Internal Server Error: DB connection failed</signature>
+    <count>8</count>
+    <sample_alert_id>630b8204-9561-4681-a284-56c0cd7ae703</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Connection refused</signature>
+    <count>6</count>
+    <sample_alert_id>57e35f6f-6f14-4d54-b4f8-97079ecffa7d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>13</count>
+    <sample_alert_id>9c98197f-705e-4a3e-b991-e042334b8b5b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>5</count>
+    <sample_alert_id>743fa73e-b76c-4f51-8d93-7fabf3203c74</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db-node-1: P0: OOM Killed</signature>
+    <count>3</count>
+    <sample_alert_id>3b62f6e1-5c63-4114-93c2-739e4aae8e4a</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.9,
+  "cited_alert_ids": [
+    "368d637a-9013-4045-b12d-6c3e5cfda202",
+    "630b8204-9561-4681-a284-56c0cd7ae703",
+    "57e35f6f-6f14-4d54-b4f8-97079ecffa7d",
+    "3b62f6e1-5c63-4114-93c2-739e4aae8e4a"
+  ],
+  "summary": "Database connectivity failures are causing 500 errors in auth-service and billing\u2011api, with user\u2011db connection refusals and an OOM kill, indicating a potential outage."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787998826.0432112 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>3</count>
+    <sample_alert_id>e4261ea4-8cdf-480f-8267-c477c6c21cc3</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>kafka-broker: Consumer group rebalanced</signature>
+    <count>2</count>
+    <sample_alert_id>04963254-cb80-419a-aaf8-f0e811794b0e</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>1</count>
+    <sample_alert_id>c5571c9a-424a-4d49-98fd-1e7a153cdc01</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>1</count>
+    <sample_alert_id>21b5f8ec-d46c-4f3d-ab6f-d9c75351374b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>1</count>
+    <sample_alert_id>4d462bff-417c-45e6-bce4-3965f08f13d3</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>1</count>
+    <sample_alert_id>6670e801-c135-43b6-b7b3-53330a701a4d</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV4",
+  "confidence": 0.15,
+  "cited_alert_ids": [
+    "21b5f8ec-d46c-4f3d-ab6f-d9c75351374b"
+  ],
+  "summary": "Minor performance warning in billing API observed, but no overall service impact."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787998923.7278318 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>12</count>
+    <sample_alert_id>58fe305b-021e-40c3-a23d-d3cad6a78ecc</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend-app: ConnectionPoolTimeout fetching user profile</signature>
+    <count>8</count>
+    <sample_alert_id>f6db8f49-190f-4a9b-9bf3-5b1332a3c902</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>18</count>
+    <sample_alert_id>900d51dc-8f66-41c6-ad96-7ef2ce674752</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>9</count>
+    <sample_alert_id>98abe97b-3a56-49f9-9efa-2561d6d78eec</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>nginx-ingress: HTTP 304 Not Modified</signature>
+    <count>12</count>
+    <sample_alert_id>c6bd00fb-2150-46eb-a527-ae30f047f64b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cluster-main: High latency alert > 500ms</signature>
+    <count>4</count>
+    <sample_alert_id>bd53e28b-66a1-49cc-b259-7361aa0c4067</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Memory usage at 45%</signature>
+    <count>9</count>
+    <sample_alert_id>8537db97-c1c2-4038-a0c9-e1e48c3bfcad</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>16</count>
+    <sample_alert_id>c21e2ad0-caa4-4642-b9a0-6547fa2b8968</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cluster-main: Max memory reached, evicting keys</signature>
+    <count>9</count>
+    <sample_alert_id>7c011492-724a-4713-9d5d-10b247426bc2</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: Healthcheck passed</signature>
+    <count>10</count>
+    <sample_alert_id>9c71bad4-842f-41cb-84dd-5f28504ba5a6</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>inventory-svc: Stock sync successful</signature>
+    <count>9</count>
+    <sample_alert_id>8c98b543-6dce-4c45-9947-b7b342487770</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>11</count>
+    <sample_alert_id>45405595-4f6d-4bc3-a606-9e92bb2adebe</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>kafka-broker: Consumer group rebalanced</signature>
+    <count>12</count>
+    <sample_alert_id>128e83b0-883e-4385-9109-e7b6f8d05f21</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>api-gateway: 504 Gateway Timeout upstream</signature>
+    <count>4</count>
+    <sample_alert_id>2156008e-ba0e-4edd-a10f-7c042acca7a9</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.87,
+  "cited_alert_ids": [
+    "2156008e-ba0e-4edd-a10f-7c042acca7a9",
+    "7c011492-724a-4713-9d5d-10b247426bc2",
+    "f6db8f49-190f-4a9b-9bf3-5b1332a3c902",
+    "bd53e28b-66a1-49cc-b259-7361aa0c4067"
+  ],
+  "summary": "Critical API gateway timeouts and Redis memory eviction suggest a service outage."
+}
+Final Severity: SEV2
+
+--- Timestamp: 1787998930.6939938 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend-app: ConnectionPoolTimeout fetching user profile</signature>
+    <count>1</count>
+    <sample_alert_id>c265c5f3-371c-475b-be73-6fdccf37ae9a</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>3</count>
+    <sample_alert_id>33abf79e-aaab-4fce-b2ad-17081c9c125e</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>nginx-ingress: HTTP 304 Not Modified</signature>
+    <count>1</count>
+    <sample_alert_id>684d8242-ece9-41e2-ae6e-be3da543071a</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>1</count>
+    <sample_alert_id>90d00dd7-edf9-4fca-9e8a-129e1a541d39</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Memory usage at 45%</signature>
+    <count>1</count>
+    <sample_alert_id>f2cfa8bb-644b-42ec-8a8d-013e2a834dd5</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV3",
+  "confidence": 0.7,
+  "cited_alert_ids": [
+    "c265c5f3-371c-475b-be73-6fdccf37ae9a"
+  ],
+  "summary": "A connection pool timeout in the frontend is preventing user profile fetches, potentially degrading user experience."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787998983.3189864 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>redis-cache: Memory usage at 45%</signature>
+    <count>14</count>
+    <sample_alert_id>01f5bf56-5bb6-41ea-9aaa-bb0092f25ddd</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>17</count>
+    <sample_alert_id>630c3727-844c-4e97-ab28-d82b76da4fb8</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>14</count>
+    <sample_alert_id>49dff5f7-4e5a-44af-bb0c-0003c51aad11</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>16</count>
+    <sample_alert_id>b0aa175b-4a37-4fbe-9e75-742dd345cdc5</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>kafka-broker: Consumer group rebalanced</signature>
+    <count>11</count>
+    <sample_alert_id>17ffe102-5a53-4c71-a637-c13405b9a325</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>inventory-svc: Stock sync successful</signature>
+    <count>9</count>
+    <sample_alert_id>03bc37f3-93e8-4313-948e-b14007c9b418</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: PaymentFailedException: Downstream timeout</signature>
+    <count>4</count>
+    <sample_alert_id>2a901380-c6ec-49b2-8a59-5510dc02e1d6</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>9</count>
+    <sample_alert_id>a1cc243c-9198-46b9-9799-4de68534623a</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>12</count>
+    <sample_alert_id>542ef82d-debf-4615-8e76-fd252b60165f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>stripe-integration: 503 Service Unavailable from external API</signature>
+    <count>8</count>
+    <sample_alert_id>23ece994-7660-4ce0-b091-12b40824052d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: Healthcheck passed</signature>
+    <count>15</count>
+    <sample_alert_id>bd3a1067-db63-462e-9a70-b6ca82014a83</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>nginx-ingress: HTTP 304 Not Modified</signature>
+    <count>13</count>
+    <sample_alert_id>3730bc37-c338-4369-b5c5-08c15f1538b2</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>checkout-service: Cart checkout failed, returning 500</signature>
+    <count>8</count>
+    <sample_alert_id>c2d85300-7e13-49ec-8ff9-4794fb4c5103</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.86,
+  "cited_alert_ids": [
+    "2a901380-c6ec-49b2-8a59-5510dc02e1d6",
+    "23ece994-7660-4ce0-b091-12b40824052d",
+    "c2d85300-7e13-49ec-8ff9-4794fb4c5103"
+  ],
+  "summary": "Payment and checkout services are failing due to downstream timeouts and 503 errors from external APIs"
+}
+Final Severity: SEV2
+
+--- Timestamp: 1787999077.6634536 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>kafka-broker: Consumer group rebalanced</signature>
+    <count>13</count>
+    <sample_alert_id>3f2d9629-75d4-4bf3-83bc-1741948bfa06</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Connection refused</signature>
+    <count>4</count>
+    <sample_alert_id>7070634f-970d-4c0b-aeb7-caac89cf331d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>inventory-svc: Stock sync successful</signature>
+    <count>13</count>
+    <sample_alert_id>1105ecac-ab8a-40df-8f23-3dd9fcb4783b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>21</count>
+    <sample_alert_id>c798fe7e-9751-44fe-9595-dcfb06781127</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>14</count>
+    <sample_alert_id>25cd0249-29fa-419c-ab1b-ca8e4cd56c14</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>12</count>
+    <sample_alert_id>e3b129ee-ac30-4cdd-ba57-ebb7a23bec77</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: Healthcheck passed</signature>
+    <count>17</count>
+    <sample_alert_id>441ac06c-3b31-4376-a7a1-9dad3ea23916</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>11</count>
+    <sample_alert_id>2da98158-9ebd-4dd7-81ed-882260cf8cc0</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>15</count>
+    <sample_alert_id>4d042d40-3cba-4370-9fb5-a91116099b36</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Memory usage at 45%</signature>
+    <count>10</count>
+    <sample_alert_id>45aadac1-98b7-41dc-9536-6e72fac9af7d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 500 Internal Server Error: DB connection failed</signature>
+    <count>5</count>
+    <sample_alert_id>9c585f9b-57ad-472c-8649-9a48fe3d7cf1</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>nginx-ingress: HTTP 304 Not Modified</signature>
+    <count>6</count>
+    <sample_alert_id>f357b9a3-ee23-4c05-9453-e3ca44ee5d0f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: 500 Internal Server Error: DB connection failed</signature>
+    <count>3</count>
+    <sample_alert_id>a6a71bfc-9f38-418f-b7c2-ef92a9594d67</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db-node-1: P0: OOM Killed</signature>
+    <count>6</count>
+    <sample_alert_id>f7ffcbd6-30f1-4dab-8913-bc807ea987a5</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.92,
+  "cited_alert_ids": [
+    "9c585f9b-57ad-472c-8649-9a48fe3d7cf1",
+    "a6a71bfc-9f38-418f-b7c2-ef92a9594d67",
+    "f7ffcbd6-30f1-4dab-8913-bc807ea987a5",
+    "7070634f-970d-4c0b-aeb7-caac89cf331d"
+  ],
+  "summary": "Auth service, billing API, and user-db are experiencing DB connection failures and OOM kills, causing a service outage."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787999110.8162348 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>10</count>
+    <sample_alert_id>2880798e-e151-4a9b-b2e3-ddb069369243</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>13</count>
+    <sample_alert_id>65210868-8984-4d1e-ac45-54c557c31183</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: Healthcheck passed</signature>
+    <count>13</count>
+    <sample_alert_id>91d5b94e-12ed-4ed6-a69f-02db7ca38166</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>kafka-broker: Consumer group rebalanced</signature>
+    <count>8</count>
+    <sample_alert_id>c3dc226d-0923-4081-b194-6ec3c69a21f5</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>12</count>
+    <sample_alert_id>bc573c1d-f440-4119-a253-50b4ce3c329d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Memory usage at 45%</signature>
+    <count>15</count>
+    <sample_alert_id>65f556a1-3435-4687-91d7-2319a8ed2a4e</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>inventory-svc: Stock sync successful</signature>
+    <count>18</count>
+    <sample_alert_id>b8c4734b-86b5-46ac-ab5f-3cbe2e235953</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>nginx-ingress: HTTP 304 Not Modified</signature>
+    <count>14</count>
+    <sample_alert_id>c3727bff-2154-43ad-bec0-7c1b544a5ffa</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>18</count>
+    <sample_alert_id>efbce029-e361-4e80-a8d5-346502f06fe6</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cluster-main: Max memory reached, evicting keys</signature>
+    <count>8</count>
+    <sample_alert_id>cac3e579-fa1b-468f-b610-46fe860991c8</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>9</count>
+    <sample_alert_id>7a7dd13f-1a87-43c1-9cc7-bc873a5dbc1c</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend-app: ConnectionPoolTimeout fetching user profile</signature>
+    <count>9</count>
+    <sample_alert_id>753284dd-6d82-4fba-8309-af45b7aa6492</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>api-gateway: 504 Gateway Timeout upstream</signature>
+    <count>1</count>
+    <sample_alert_id>24fbd274-d4ab-4eb6-a33e-85f6dddd73ba</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cluster-main: High latency alert > 500ms</signature>
+    <count>2</count>
+    <sample_alert_id>104b57cb-ba10-48dd-a397-0904ef458fa8</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.85,
+  "cited_alert_ids": [
+    "24fbd274-d4ab-4eb6-a33e-85f6dddd73ba",
+    "104b57cb-ba10-48dd-a397-0904ef458fa8",
+    "cac3e579-fa1b-468f-b610-46fe860991c8"
+  ],
+  "summary": "API gateway is seeing 504 Gateway Timeout errors while the Redis cluster reports high latency and max memory pressure, indicating possible service degradation."
+}
+Final Severity: SEV2
+
+--- Timestamp: 1787999178.700382 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>13</count>
+    <sample_alert_id>5b04b4ac-eeda-42a1-82f4-dd061a4d48c5</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>14</count>
+    <sample_alert_id>2461610b-9ce3-4315-aa99-5aae5edf6a6b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>kafka-broker: Consumer group rebalanced</signature>
+    <count>17</count>
+    <sample_alert_id>c04fcd57-fc5f-4731-a2cb-d789bee2676a</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>8</count>
+    <sample_alert_id>eba49b53-4693-4570-8fb3-bf4e5b82f4f0</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>10</count>
+    <sample_alert_id>fb3a5698-5c14-4e43-a701-ae8d4e37ba91</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>nginx-ingress: HTTP 304 Not Modified</signature>
+    <count>11</count>
+    <sample_alert_id>11fd8847-9295-4859-bb0f-12f340fb2e97</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>stripe-integration: 503 Service Unavailable from external API</signature>
+    <count>9</count>
+    <sample_alert_id>d23caf9c-ae98-43d9-9fec-48cad653580a</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Memory usage at 45%</signature>
+    <count>15</count>
+    <sample_alert_id>cdee022b-9e7f-43e8-ad08-293977c3b86a</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: PaymentFailedException: Downstream timeout</signature>
+    <count>10</count>
+    <sample_alert_id>b187b345-5fc0-4991-94ae-6dc2d150d96d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>inventory-svc: Stock sync successful</signature>
+    <count>11</count>
+    <sample_alert_id>4d8cebdf-f351-4767-83b3-a607dba6edb8</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>12</count>
+    <sample_alert_id>63b0b2f0-1a60-4a23-a01f-bebf1b12c746</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: Healthcheck passed</signature>
+    <count>9</count>
+    <sample_alert_id>07c70c62-4f8c-4751-8ccd-3be07d2950b3</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>checkout-service: Cart checkout failed, returning 500</signature>
+    <count>4</count>
+    <sample_alert_id>66c4b829-3c80-4e07-ae8a-83b878d6e63b</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.82,
+  "cited_alert_ids": [
+    "d23caf9c-ae98-43d9-9fec-48cad653580a",
+    "b187b345-5fc0-4991-94ae-6dc2d150d96d",
+    "66c4b829-3c80-4e07-ae8a-83b878d6e63b"
+  ],
+  "summary": "Payments are failing due to downstream timeouts and Stripe 503 errors, causing checkout service 500 responses."
+}
+Final Severity: SEV2
+
+--- Timestamp: 1787999186.079308 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>1</count>
+    <sample_alert_id>6ccf280d-462f-4c47-9af6-d3b05313cd06</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>1</count>
+    <sample_alert_id>81a5a1d4-9fdb-471b-abe9-c3dded31d209</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Memory usage at 45%</signature>
+    <count>1</count>
+    <sample_alert_id>e688b325-533a-4110-bbf6-8dd7e47d8a8b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>1</count>
+    <sample_alert_id>ac945326-75ef-419b-aa74-48f861fa0e18</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>2</count>
+    <sample_alert_id>918817bf-1634-4aab-a19a-3fc76fa2465c</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>1</count>
+    <sample_alert_id>66abaf00-cd20-4c3d-9a8c-76d71b7e2a37</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV4",
+  "confidence": 0.1,
+  "cited_alert_ids": [
+    "6ccf280d-462f-4c47-9af6-d3b05313cd06",
+    "81a5a1d4-9fdb-471b-abe9-c3dded31d209"
+  ],
+  "summary": "No service\u2011impacting incidents detected in the current alert batch."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787999263.5975618 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>11</count>
+    <sample_alert_id>5fecc6ea-1552-4bab-9a68-fc059b85b4d2</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>stripe-integration: 503 Service Unavailable from external API</signature>
+    <count>4</count>
+    <sample_alert_id>7d098121-57cb-48a1-b619-3f44ac43c4bb</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Memory usage at 45%</signature>
+    <count>9</count>
+    <sample_alert_id>cbbacf5b-2ba1-434d-a274-5522716c1bd8</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>15</count>
+    <sample_alert_id>dba3c8d0-86a7-447a-9dcb-a7dd20353b82</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>nginx-ingress: HTTP 304 Not Modified</signature>
+    <count>14</count>
+    <sample_alert_id>c6cc3970-9b3d-4d7b-863c-9fe53be30edf</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>kafka-broker: Consumer group rebalanced</signature>
+    <count>18</count>
+    <sample_alert_id>5b39096b-3d6c-41ca-8e1b-e2fbdcb518d2</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: Healthcheck passed</signature>
+    <count>14</count>
+    <sample_alert_id>e21d569a-695f-48fa-bed0-0df920294b22</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>12</count>
+    <sample_alert_id>1813d9ad-ceb5-4696-a72c-4333509069bc</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: PaymentFailedException: Downstream timeout</signature>
+    <count>6</count>
+    <sample_alert_id>62dc6148-180a-4c7e-9d21-74afdce47c08</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>inventory-svc: Stock sync successful</signature>
+    <count>14</count>
+    <sample_alert_id>1bd35199-69d3-4957-871b-d1400e41772f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>checkout-service: Cart checkout failed, returning 500</signature>
+    <count>4</count>
+    <sample_alert_id>8457c551-57f8-4570-9c0b-cc1388a68d6f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>11</count>
+    <sample_alert_id>88b9aa13-caee-47c3-a4d1-1c138b17077f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>13</count>
+    <sample_alert_id>814f7b8f-88d7-4d99-ba78-549257e291db</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.8,
+  "cited_alert_ids": [
+    "7d098121-57cb-48a1-b619-3f44ac43c4bb",
+    "62dc6148-180a-4c7e-9d21-74afdce47c08",
+    "8457c551-57f8-4570-9c0b-cc1388a68d6f"
+  ],
+  "summary": "Payment processing is degraded due to downstream timeouts and checkout failures, impacting transaction success."
+}
+Final Severity: SEV2
+
+--- Timestamp: 1787999271.002987 [Tenant: tenant-A] ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>user-db: Vacuum process completed</signature>
+    <count>1</count>
+    <sample_alert_id>25f07464-599f-4193-8d2c-154a0a8ec6c7</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: Info: User login successful</signature>
+    <count>1</count>
+    <sample_alert_id>e2715b68-dc8a-4c17-b50e-39d85705675b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: HTTP 200 OK - /home</signature>
+    <count>1</count>
+    <sample_alert_id>fcff00a6-9d09-46e3-8198-0d91fe5e4f3f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>billing-api: Warning: Query took 200ms</signature>
+    <count>1</count>
+    <sample_alert_id>fc517bbe-c5d0-4f0a-8035-6398b14f8e6d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>email-sender: Queue size: 4</signature>
+    <count>1</count>
+    <sample_alert_id>67598361-722a-407c-ab09-93d38d5923b3</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV4",
+  "confidence": 0.0,
+  "cited_alert_ids": [
+    "25f07464-599f-4193-8d2c-154a0a8ec6c7",
+    "e2715b68-dc8a-4c17-b50e-39d85705675b",
+    "fcff00a6-9d09-46e3-8198-0d91fe5e4f3f",
+    "fc517bbe-c5d0-4f0a-8035-6398b14f8e6d",
+    "67598361-722a-407c-ab09-93d38d5923b3"
+  ],
+  "summary": "No critical incidents detected; all alerts are informational or low\u2011severity."
+}
+Final Severity: SEV1
+

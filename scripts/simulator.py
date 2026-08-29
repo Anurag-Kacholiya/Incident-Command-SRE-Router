@@ -7,7 +7,7 @@ import hashlib
 import os
 import sys
 
-WEBHOOK_URL = "http://localhost:8000/webhook"
+WEBHOOK_URL = "http://localhost:8000/webhook/tenant-A"
 WEBHOOK_SECRET = os.environ.get("WEBHOOK_SECRET", "dummy-secret").encode()
 
 # 10 Different Mock Sources

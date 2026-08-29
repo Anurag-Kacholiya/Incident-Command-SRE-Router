@@ -22,8 +22,8 @@ def verify_signature(payload: bytes, signature: str) -> bool:
     expected = hmac.new(WEBHOOK_SECRET, payload, hashlib.sha256).hexdigest()
     return hmac.compare_digest(expected, signature)
 
-@app.post("/webhook")
-async def webhook(request: Request, x_signature: str = Header(None)):
+@app.post("/webhook/{tenant_id}")
+async def webhook(tenant_id: str, request: Request, x_signature: str = Header(None)):
     """
     Ingestion Layer (The API Gateway)
     Its only job is to timestamp the alert and dump it into a Message Queue.
@@ -43,9 +43,9 @@ async def webhook(request: Request, x_signature: str = Header(None)):
         "payload": payload
     }
     
-    # Push incoming JSON directly into a Redis List (The Buffer)
+    # Push incoming JSON directly into a Redis Stream (The Buffer)
     try:
-        r.lpush("alerts", json.dumps(alert_event))
+        r.xadd("alerts_stream", {"payload": json.dumps(alert_event), "tenant_id": tenant_id})
     except redis.RedisError:
         raise HTTPException(status_code=503, detail="Queue unavailable")
     
