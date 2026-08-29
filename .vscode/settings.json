@@ -1,0 +1,5 @@
+{
+    "powerquery.client.additionalSymbolsDirectories": [
+        "/home/anurag/IIITH/PROJECT/signal_labs_hackathon/.vscode/excel-pq-symbols"
+    ]
+}
