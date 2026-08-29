@@ -1,0 +1,329 @@
+--- Timestamp: 1787984957.2025566 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>payment-api: ConnectionPoolTimeout</signature>
+    <count>3</count>
+    <sample_alert_id>e023e2be-d57b-42cc-b07d-4c087455d74b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>4</count>
+    <sample_alert_id>6136e294-52f3-4c1d-9a3c-09592debb2a5</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>database: P0: OOM Killed</signature>
+    <count>4</count>
+    <sample_alert_id>4f18e34f-3d67-4283-85de-bb11727ec644</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>3</count>
+    <sample_alert_id>dd655813-3d8d-4b3c-9695-51f294227d76</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 504 Gateway Timeout</signature>
+    <count>3</count>
+    <sample_alert_id>40cfa7ec-6a86-41c2-b0cc-a3e00d7cde29</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.95,
+  "cited_alert_ids": [
+    "4f18e34f-3d67-4283-85de-bb11727ec644",
+    "e023e2be-d57b-42cc-b07d-4c087455d74b",
+    "40cfa7ec-6a86-41c2-b0cc-a3e00d7cde29"
+  ],
+  "summary": "Database OOM kill is causing widespread service failures including payment API timeouts and auth-service gateway errors."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787984963.124538 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>database: P0: OOM Killed</signature>
+    <count>1</count>
+    <sample_alert_id>58311c30-086e-431c-9944-f38cca7df3fb</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>2</count>
+    <sample_alert_id>743ff041-c417-4896-b04d-7fe4c91ea23c</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.9,
+  "cited_alert_ids": [
+    "58311c30-086e-431c-9944-f38cca7df3fb",
+    "743ff041-c417-4896-b04d-7fe4c91ea23c"
+  ],
+  "summary": "Database OOM kill and Redis cache connection refusals are disrupting services."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787987591.666183 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>database: P0: OOM Killed</signature>
+    <count>2</count>
+    <sample_alert_id>7af640d8-fb3d-41fa-8d26-80b36949719f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>7</count>
+    <sample_alert_id>cc157701-935b-4866-8f8d-295bfb8ac919</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 504 Gateway Timeout</signature>
+    <count>3</count>
+    <sample_alert_id>215553cf-c800-4913-ae5b-a31895bdd28c</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>2</count>
+    <sample_alert_id>a526189a-572f-4ead-881f-a851d9b22ce6</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: ConnectionPoolTimeout</signature>
+    <count>4</count>
+    <sample_alert_id>c8da8e71-9273-46a7-b4a7-47aad3a88073</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.94,
+  "cited_alert_ids": [
+    "7af640d8-fb3d-41fa-8d26-80b36949719f",
+    "215553cf-c800-4913-ae5b-a31895bdd28c",
+    "a526189a-572f-4ead-881f-a851d9b22ce6",
+    "c8da8e71-9273-46a7-b4a7-47aad3a88073"
+  ],
+  "summary": "Critical outage caused by a database OOM kill, triggering downstream failures in auth, redis, and payment services."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787987598.3023362 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>1</count>
+    <sample_alert_id>6804d4bd-ddb5-4c1f-940a-6e5848bdbb75</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 504 Gateway Timeout</signature>
+    <count>1</count>
+    <sample_alert_id>6a8c7de6-173e-4e1a-a891-07ce28b358a0</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.92,
+  "cited_alert_ids": [
+    "6804d4bd-ddb5-4c1f-940a-6e5848bdbb75",
+    "6a8c7de6-173e-4e1a-a891-07ce28b358a0"
+  ],
+  "summary": "Redis cache connection refused and auth service 504 timeout are causing a service disruption."
+}
+Final Severity: SEV2
+
+--- Timestamp: 1787987678.4830406 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>payment-api: ConnectionPoolTimeout</signature>
+    <count>5</count>
+    <sample_alert_id>e82001b8-9945-443d-8c28-2b72aa2b97c4</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>database: P0: OOM Killed</signature>
+    <count>4</count>
+    <sample_alert_id>41c9e8a7-ab5c-4344-af5c-b8554dd931e2</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>4</count>
+    <sample_alert_id>fa6f3e82-6beb-4ecd-baa6-8aa73ed18337</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 504 Gateway Timeout</signature>
+    <count>2</count>
+    <sample_alert_id>d584d2f9-4d7d-4ef7-97a0-56a9eec47a8b</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>1</count>
+    <sample_alert_id>70d00904-69a3-46d7-a2cb-8afe75ee28ff</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.92,
+  "cited_alert_ids": [
+    "e82001b8-9945-443d-8c28-2b72aa2b97c4",
+    "41c9e8a7-ab5c-4344-af5c-b8554dd931e2",
+    "fa6f3e82-6beb-4ecd-baa6-8aa73ed18337",
+    "d584d2f9-4d7d-4ef7-97a0-56a9eec47a8b"
+  ],
+  "summary": "Critical services (payment API, database, and Redis) are facing connection timeouts and OOM kills, leading to a system-wide outage."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787987685.2410128 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>2</count>
+    <sample_alert_id>08772ce5-d77a-4e97-8422-66fd0d973f19</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>database: P0: OOM Killed</signature>
+    <count>1</count>
+    <sample_alert_id>4e8c2472-3ca8-48dd-89cf-b1e7f8e3e0b8</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>1</count>
+    <sample_alert_id>0e22a36c-8cef-4fe7-aab4-d58bbdd41ba6</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.9,
+  "cited_alert_ids": [
+    "4e8c2472-3ca8-48dd-89cf-b1e7f8e3e0b8",
+    "0e22a36c-8cef-4fe7-aab4-d58bbdd41ba6",
+    "08772ce5-d77a-4e97-8422-66fd0d973f19"
+  ],
+  "summary": "Database process was OOM\u2011killed causing a service outage, with additional frontend JS TypeErrors and redis cache connection refusals."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787987788.2499049 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>6</count>
+    <sample_alert_id>d8d4fdaf-9b7a-493b-acfc-f8644e78436e</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: ConnectionPoolTimeout</signature>
+    <count>2</count>
+    <sample_alert_id>a4c599bb-19b3-4db5-98c2-3fc0a4575aa7</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>3</count>
+    <sample_alert_id>7a43b9ec-8f7f-48fd-854e-3ce714311fa1</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 504 Gateway Timeout</signature>
+    <count>7</count>
+    <sample_alert_id>5d3c6b77-f012-4aea-89da-b8ea73b482e9</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>database: P0: OOM Killed</signature>
+    <count>2</count>
+    <sample_alert_id>8c606ceb-6105-42b0-959c-a6f47602a43b</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.95,
+  "cited_alert_ids": [
+    "5d3c6b77-f012-4aea-89da-b8ea73b482e9",
+    "8c606ceb-6105-42b0-959c-a6f47602a43b",
+    "7a43b9ec-8f7f-48fd-854e-3ce714311fa1"
+  ],
+  "summary": "Multiple critical services\u2014including auth, database, and Redis\u2014are experiencing timeouts and OOM failures, indicating a severe outage."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787987827.5741675 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>payment-api: ConnectionPoolTimeout</signature>
+    <count>3</count>
+    <sample_alert_id>ba4fd236-7983-4a62-8ac3-7b0fc97882fb</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>auth-service: 504 Gateway Timeout</signature>
+    <count>4</count>
+    <sample_alert_id>71a37bdd-2543-4893-97ec-5627cb02e560</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>3</count>
+    <sample_alert_id>8248e0fa-d3f3-4f3d-913d-031a64c4599d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>database: P0: OOM Killed</signature>
+    <count>3</count>
+    <sample_alert_id>13f1c1be-ec6f-48e1-a418-ecfc22583b1d</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>3</count>
+    <sample_alert_id>beaa140c-4d96-4dcd-91f6-5dcca699e623</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV1",
+  "confidence": 0.95,
+  "cited_alert_ids": [
+    "13f1c1be-ec6f-48e1-a418-ecfc22583b1d",
+    "beaa140c-4d96-4dcd-91f6-5dcca699e623",
+    "71a37bdd-2543-4893-97ec-5627cb02e560",
+    "ba4fd236-7983-4a62-8ac3-7b0fc97882fb"
+  ],
+  "summary": "Critical services including the database, Redis cache, authentication, and payment API are experiencing timeouts and failures, leading to a major outage."
+}
+Final Severity: SEV1
+
+--- Timestamp: 1787987834.4420254 ---
+Input XML:
+<alert_batch>
+  <alert_group>
+    <signature>frontend: JS Error: TypeError</signature>
+    <count>2</count>
+    <sample_alert_id>767fa003-c442-423d-842f-4b29f270b6b7</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>redis-cache: Connection refused</signature>
+    <count>1</count>
+    <sample_alert_id>380a2f70-36e2-4a53-8f35-f419c13f8e1f</sample_alert_id>
+  </alert_group>
+  <alert_group>
+    <signature>payment-api: ConnectionPoolTimeout</signature>
+    <count>1</count>
+    <sample_alert_id>8004fac2-9fac-4bd7-875e-8a1f6a4b2fe5</sample_alert_id>
+  </alert_group>
+</alert_batch>
+Raw LLM Output:
+{
+  "severity": "SEV2",
+  "confidence": 0.8,
+  "cited_alert_ids": [
+    "767fa003-c442-423d-842f-4b29f270b6b7",
+    "380a2f70-36e2-4a53-8f35-f419c13f8e1f",
+    "8004fac2-9fac-4bd7-875e-8a1f6a4b2fe5"
+  ],
+  "summary": "Multiple service errors observed affecting frontend, redis cache, and payment API."
+}
+Final Severity: SEV2
+

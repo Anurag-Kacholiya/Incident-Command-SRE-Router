@@ -34,3 +34,7 @@ coverage/
 # Temporary files
 *.tmp
 *.temp
+
+intruction.md
+.vscode/
+__pycache__
