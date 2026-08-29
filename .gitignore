@@ -38,3 +38,6 @@ coverage/
 intruction.md
 .vscode/
 __pycache__
+
+# venv
+venv/
