@@ -51,3 +51,31 @@ async def webhook(tenant_id: str, request: Request, x_signature: str = Header(No
     
     # Return HTTP 200 OK instantly (zero synchronous processing)
     return {"status": "received", "id": alert_event["id"]}
+
+@app.post("/slack/events")
+async def slack_events(request: Request):
+    """
+    Listens for Slack Events (like adding a ✅ reaction) to acknowledge incidents.
+    """
+    try:
+        payload = await request.json()
+    except:
+        return {"status": "ignored"}
+        
+    # Slack URL Verification challenge
+    if "challenge" in payload:
+        return {"challenge": payload["challenge"]}
+        
+    # Handle reaction_added event
+    if payload.get("event", {}).get("type") == "reaction_added":
+        reaction = payload["event"]["reaction"]
+        if reaction in ["white_check_mark", "heavy_check_mark"]:
+            # For the MVP, we just aggressively ack all open incidents when a checkmark is seen
+            cursor, keys = r.scan(match="incident:*", count=100)
+            for key in keys:
+                incident = r.hgetall(key)
+                if incident and incident.get("acked") == "false":
+                    r.hset(key, "acked", "true")
+                    print(f"✅ Acked incident {key} via Slack reaction!")
+                    
+    return {"status": "ok"}
