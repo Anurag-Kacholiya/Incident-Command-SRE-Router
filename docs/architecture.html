@@ -3,118 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRE Router Architecture</title>
+    <title>SRE Router Architecture - Single Screen</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ 
             startOnLoad: true, 
             theme: 'base',
             themeVariables: {
-                background: '#0a0a0a',
-                primaryColor: '#171717',
-                primaryTextColor: '#ededed',
-                primaryBorderColor: '#333333',
-                lineColor: '#666666',
-                secondaryColor: '#262626',
-                tertiaryColor: '#1a1a1a',
-                clusterBkg: '#0a0a0a',
-                clusterBorder: '#333333',
-                mainBkg: '#171717',
-                nodeBorder: '#404040',
-                edgeLabelBackground: '#0a0a0a',
-                fontFamily: 'Inter, sans-serif'
+                background: 'transparent',
+                primaryColor: '#3b82f6',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#60a5fa',
+                lineColor: '#cbd5e1',
+                clusterBkg: 'rgba(255, 255, 255, 0.04)',
+                clusterBorder: 'rgba(255, 255, 255, 0.15)',
+                nodeBorder: 'rgba(255, 255, 255, 0.2)',
+                edgeLabelBackground: '#1e293b',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '17px' /* Increased for readability on scaled screens */
             },
             flowchart: {
                 curve: 'basis',
-                nodeSpacing: 50,
-                rankSpacing: 40
+                nodeSpacing: 15, /* Tighter horizontal packing */
+                rankSpacing: 25, /* Tighter vertical packing */
+                padding: 15
             }
         });
     </script>
+
     <style>
         :root {
-            --bg-color: #000000;
-            --text-color: #ededed;
-            --card-bg: #0a0a0a;
-            --border-color: #333333;
+            --bg-color: #0f172a;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --text-color: #f8fafc;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
         }
 
-        body {
-            background-color: var(--bg-color);
+        /* Prevent all scrolling and lock to exact viewport height */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh; 
+            overflow: hidden; /* CRITICAL: Disables scrolling */
+            background: var(--bg-gradient);
             color: var(--text-color);
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 40px 20px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            min-height: 100vh;
         }
 
+        /* Adaptive container that fits within the locked viewport */
         .container {
-            max-width: 800px;
-            width: 100%;
+            width: 98vw;
+            height: 96vh;
             background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            padding: 2vh 2vw;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05) inset;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            box-sizing: border-box;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 20px;
-            width: 100%;
-            padding-bottom: 20px;
+            margin-bottom: 1vh;
+            padding-bottom: 1vh;
             border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0; /* Prevents header from collapsing */
         }
 
         .header h1 {
-            font-weight: 600;
-            font-size: 2.2rem;
-            margin: 0 0 8px 0;
-            background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3vh, 2.2rem);
+            margin: 0 0 5px 0;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
         }
 
         .header p {
-            font-weight: 300;
-            color: #888;
-            font-size: 1rem;
+            font-weight: 600;
+            color: #94a3b8;
+            font-size: clamp(0.9rem, 1.5vh, 1.1rem);
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        .mermaid {
+        /* Wrapper to strictly contain the SVG */
+        .mermaid-wrapper {
+            flex-grow: 1;
             width: 100%;
             display: flex;
             justify-content: center;
-            overflow: hidden;
-            margin: 20px 0;
+            align-items: center;
+            overflow: hidden; /* Ensures SVG doesn't bleed out */
+            margin: 1vh 0;
+        }
+
+        /* Scalable SVG Configuration */
+        .mermaid {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .mermaid svg {
             max-width: 100% !important;
+            max-height: 100% !important;
             height: auto !important;
+            width: auto !important;
+            object-fit: contain; /* Keeps aspect ratio intact while fitting container perfectly */
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
         }
         
         .footer {
-            margin-top: 10px;
+            flex-shrink: 0;
             text-align: center;
-            font-size: 0.85rem;
-            color: #666;
+            font-size: clamp(0.7rem, 1.2vh, 0.9rem);
+            color: #94a3b8;
             border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-            width: 100%;
-            font-weight: 300;
+            padding-top: 1vh;
+            font-weight: 400;
         }
     </style>
 </head>
@@ -125,75 +148,89 @@
             <p>SRE AI Router Architecture</p>
         </div>
         
-        <div class="mermaid">
-            flowchart TD
-                %% 1. Ingestion Layer
-                subgraph Ingestion ["1. Ingestion Layer"]
-                    Sources["Alert Sources"]
-                    API["FastAPI Gateway\n(Multi-Tenant)"]
-                    SlackEvent["Slack /events\n(✅ Reaction)"]
+        <div class="mermaid-wrapper">
+            <div class="mermaid">
+                flowchart LR
+                    %% Condensed Node Text for Maximum Visibility on Small Screens
                     
-                    Sources -- "Untrusted JSON" --> API
-                end
+                    subgraph Z1 ["1. Ingestion"]
+                        A["Alert Sources"]
+                        B["FastAPI"]
+                        S["Slack Events (✅)"]
+                    end
 
-                %% 2. Buffer & Queue Layer
-                subgraph QueueLayer ["2. Buffer & Queue Layer"]
-                    Queue[("Redis Streams\n(XADD / XREADGROUP)")]
-                    API -- "Dump Payload" --> Queue
-                end
+                    subgraph Z2 ["2. Buffer"]
+                        C[("Redis\nStream")]
+                    end
 
-                %% 3. Batching Engine
-                subgraph BatchingLayer ["3. Batching Engine"]
-                    Worker["Python Async Worker\n(5s Time-Window)"]
-                    Dedup["Dedup & Fingerprinting\nHash: (service, error)"]
-                    
-                    Queue -- "Pull & Process" --> Worker
-                    Worker --> Dedup
-                end
+                    subgraph Z3 ["3. Process"]
+                        D["Async Worker"]
+                        E["Dedup & Hash"]
+                        F["PII Scrub"]
+                    end
 
-                %% 4. AI Evaluator & 5. Fallback Router
-                subgraph IntelligenceLayer ["4. Brain & 5. Fallback"]
-                    PII["PII Redaction Scrub"]
-                    Rules{"Deterministic Allowlist"}
-                    CircuitBreaker{"Circuit Breaker"}
-                    
-                    LLM["Primary LLM\n(Noise Filter & Double-Pass)"]
-                    RegexFallback["Regex Fallback Engine"]
-                    
-                    StateStore[("Redis KV Store\n(Tenant Isolated)")]
-                    AuditLog[("Audit Log")]
-                    
-                    Dedup --> PII
-                    PII --> Rules
-                    Rules -- "Needs AI Evaluation" --> CircuitBreaker
-                    
-                    CircuitBreaker -- "Healthy" --> LLM
-                    CircuitBreaker -- "Exception / Timeout" --> RegexFallback
-                    
-                    LLM -- "Read/Write State" --> StateStore
-                    RegexFallback -- "Read/Write State" --> StateStore
-                    
-                    LLM -.-> AuditLog
-                    RegexFallback -.-> AuditLog
-                end
+                    subgraph Z4 ["4. Intelligence & State"]
+                        G{"Allowlist"}
+                        H{"Circuit\nBreaker"}
+                        I["Primary LLM"]
+                        J["Regex\nFallback"]
+                        K[("State\nStore")]
+                        L[("Audit\nLog")]
+                    end
 
-                %% 6. Delivery & Watchdog
-                subgraph DeliveryLayer ["6. Delivery & Watchdog"]
-                    DeliveryAPI["Slack Webhooks"]
-                    Watchdog["SLA Watchdog Loop"]
+                    subgraph Z5 ["5. Delivery"]
+                        M["Slack Webhooks"]
+                        N["SLA Watchdog"]
+                        O(("XACK"))
+                    end
+
+                    %% Routing Logic
+                    A --> B
+                    B --> C
+                    C --> D
+                    D --> E
+                    E --> F
+                    F --> G
                     
-                    Rules -- "Force Escalate" --> DeliveryAPI
-                    LLM -- "Escalate" --> DeliveryAPI
-                    RegexFallback -- "Escalate" --> DeliveryAPI
+                    G -- "AI Eval" --> H
+                    H -- "OK" --> I
+                    H -- "Fail" --> J
                     
-                    StateStore -. "Poll Unacknowledged" .-> Watchdog
-                    Watchdog -- "SLA Breach" --> DeliveryAPI
-                    SlackEvent -- "ACK Incident" --> StateStore
-                end
-                
-                %% Worker XACK completion
-                DeliveryAPI -. "Complete" .-> XACK(("XACK Queue"))
-                XACK -.-> Queue
+                    %% State & Audit
+                    I -.-> K
+                    J -.-> K
+                    I -.-> L
+                    J -.-> L
+                    S -- "ACK" --> K
+                    
+                    %% Escalation
+                    G -- "Force" --> M
+                    I -- "Escalate" --> M
+                    J -- "Escalate" --> M
+                    
+                    %% Watchdog Loop
+                    K -. "Poll" .-> N
+                    N -- "Breach" --> M
+                    
+                    %% Completion Loop
+                    M -. "Done" .-> O
+                    O -.-> C
+
+                    %% --- Styling ---
+                    classDef ingestion fill:#0284c7,stroke:#38bdf8,stroke-width:2px,color:#fff;
+                    classDef queue fill:#7c3aed,stroke:#a78bfa,stroke-width:2px,color:#fff;
+                    classDef worker fill:#ea580c,stroke:#fdba74,stroke-width:2px,color:#fff;
+                    classDef brain fill:#059669,stroke:#34d399,stroke-width:2px,color:#fff;
+                    classDef delivery fill:#be123c,stroke:#fb7185,stroke-width:2px,color:#fff;
+                    classDef store fill:#475569,stroke:#94a3b8,stroke-width:2px,color:#fff;
+
+                    class A,B,S ingestion;
+                    class C queue;
+                    class D,E worker;
+                    class F,G,H,I,J brain;
+                    class K,L store;
+                    class M,N,O delivery;
+            </div>
         </div>
         
         <div class="footer">
