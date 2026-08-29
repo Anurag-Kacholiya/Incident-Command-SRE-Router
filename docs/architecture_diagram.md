@@ -6,14 +6,16 @@ Based on the updated `tech_arch.md` that was pulled, here is the visual represen
 flowchart TD
     %% 1. Ingestion Layer
     subgraph Ingestion ["1. Ingestion Layer"]
-        Sources["CloudWatch / Datadog / Sentry"]
-        API["FastAPI Webhook Gateway\n(Timestamp & Ack)"]
+        Sources["Alert Sources"]
+        API["FastAPI Gateway\n(Multi-Tenant)"]
+        SlackEvent["Slack /events\n(✅ Reaction)"]
+        
         Sources -- "Untrusted JSON" --> API
     end
 
     %% 2. Buffer & Queue Layer
     subgraph QueueLayer ["2. Buffer & Queue Layer"]
-        Queue[("RabbitMQ / Redis Streams\n(At-least-once delivery)")]
+        Queue[("Redis Streams\n(XADD / XREADGROUP)")]
         API -- "Dump Payload" --> Queue
     end
 
@@ -21,50 +23,58 @@ flowchart TD
     subgraph BatchingLayer ["3. Batching Engine"]
         Worker["Python Async Worker\n(5s Time-Window)"]
         Dedup["Dedup & Fingerprinting\nHash: (service, error)"]
-        Queue -- "XREADGROUP / RPOPLPUSH" --> Worker
+        
+        Queue -- "Pull & Process" --> Worker
         Worker --> Dedup
     end
 
     %% 4. AI Evaluator & 5. Fallback Router
-    subgraph IntelligenceLayer ["4. Evaluator & 5. Fallback Router"]
-        Rules{"Deterministic Allowlist\n(P0 / OOM / SEV1)"}
+    subgraph IntelligenceLayer ["4. Brain & 5. Fallback"]
+        PII["PII Redaction Scrub"]
+        Rules{"Deterministic Allowlist"}
         CircuitBreaker{"Circuit Breaker"}
         
-        LLM["Primary LLM API\n(Structured JSON & Confidence)"]
-        LocalFallback["Local Quantized Model\n(Qwen2.5:3B)"]
+        LLM["Primary LLM\n(Noise Filter & Double-Pass)"]
+        RegexFallback["Regex Fallback Engine"]
         
-        StateStore[("Redis KV Store\n(Stateful Memory)")]
-        AuditLog[("Audit Log\n(Decisions)")]
+        StateStore[("Redis KV Store\n(Tenant Isolated)")]
+        AuditLog[("Audit Log")]
         
-        Dedup --> Rules
+        Dedup --> PII
+        PII --> Rules
         Rules -- "Needs AI Evaluation" --> CircuitBreaker
         
         CircuitBreaker -- "Healthy" --> LLM
-        CircuitBreaker -- "Timeout/Down" --> LocalFallback
+        CircuitBreaker -- "Exception / Timeout" --> RegexFallback
         
-        LLM <--> |"Check/Update Incidents"| StateStore
-        LocalFallback <--> StateStore
+        LLM -- "Read/Write State" --> StateStore
+        RegexFallback -- "Read/Write State" --> StateStore
         
         LLM -.-> AuditLog
-        LocalFallback -.-> AuditLog
+        RegexFallback -.-> AuditLog
     end
 
     %% 6. Delivery & Watchdog
     subgraph DeliveryLayer ["6. Delivery & Watchdog"]
-        DeliveryAPI["Slack / PagerDuty Webhooks"]
+        DeliveryAPI["Slack Webhooks"]
         Watchdog["SLA Watchdog Loop"]
         
-        Rules -- "Force Escalate (Bypass AI)" --> DeliveryAPI
-        LLM -- "Severity Classification\nor Low Confidence" --> DeliveryAPI
-        LocalFallback -- "Classification" --> DeliveryAPI
+        Rules -- "Force Escalate" --> DeliveryAPI
+        LLM -- "Escalate" --> DeliveryAPI
+        RegexFallback -- "Escalate" --> DeliveryAPI
         
-        StateStore -.-> |"Poll Open SLA Timers"| Watchdog
-        Watchdog -- "SLA Breach Escalate" --> DeliveryAPI
+        StateStore -. "Poll Unacknowledged" .-> Watchdog
+        Watchdog -- "SLA Breach" --> DeliveryAPI
+        SlackEvent -- "ACK Incident" --> StateStore
     end
+    
+    %% Worker XACK completion
+    DeliveryAPI -. "Complete" .-> XACK(("XACK Queue"))
+    XACK -.-> Queue
 ```
 
 ### Key Highlights Visualized:
-- **Decoupled Architecture**: Notice how the `FastAPI Webhook Gateway` drops data directly into `RabbitMQ / Redis Streams` and returns a 200 OK, completely isolating ingestion traffic from processing latency.
-- **The Brain's Safety Net**: Before any LLM is called, the `Deterministic Allowlist` checks for known severe incidents (like P0 or OOM) and force-escalates them immediately.
-- **Circuit Breaker Pattern**: If the primary LLM API times out, the `Circuit Breaker` catches it and routes the batch to the `Local Quantized Model` to ensure smart routing even offline.
-- **The SLA Watchdog**: Operating completely independently of the AI inference, the `Watchdog` constantly polls the Redis state store to escalate any incidents that breach SLA timeframes.
+- **Interactive ACK Loop**: The `Delivery API` sends the alert to Slack, and if an engineer reacts with a ✅, the `Slack /events` webhook receives it and acknowledges the incident in Redis—stopping the `SLA Watchdog` from paging the next person.
+- **Robust Queueing**: The pipeline leverages `Redis Streams`. Messages are consumed via `XREADGROUP` and only marked as complete (`XACK`) after the LLM or Fallback engine successfully processes them, ensuring true crash-safety.
+- **The Brain's Safety Nets**: Before any LLM is called, data is passed through `PII Redaction`, and then the `Deterministic Allowlist` checks for known severe incidents (like P0 or OOM) to force-escalate them immediately.
+- **Circuit Breaker Pattern**: If the primary LLM API times out, the `Circuit Breaker` catches it and routes the batch to a `Regex Fallback Engine` to guarantee alerts are never dropped.
