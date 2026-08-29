@@ -42,34 +42,34 @@ def generate_noise():
 def get_scenario_alerts(scenario_id):
     """Returns a list of critical alerts corresponding to the chosen scenario."""
     scenarios = {
-        1: [ # Database OOM
+        1: [ # Database OOM (SEV1)
             {"source": "aws-cloudwatch", "service": "user-db-node-1", "error": "P0: OOM Killed", "severity": "CRITICAL"},
             {"source": "datadog", "service": "user-db", "error": "Connection refused", "severity": "ERROR"},
             {"source": "custom-app", "service": "auth-service", "error": "500 Internal Server Error: DB connection failed", "severity": "ERROR"},
             {"source": "custom-app", "service": "billing-api", "error": "500 Internal Server Error: DB connection failed", "severity": "ERROR"},
         ],
-        2: [ # Cache Stampede
+        2: [ # DNS Partition (SEV1/SEV2)
+            {"source": "kubernetes", "service": "coredns", "error": "Query timed out", "severity": "WARN"},
+            {"source": "custom-app", "service": "auth-service", "error": "Name resolution failed for auth.internal", "severity": "ERROR"},
+            {"source": "kafka", "service": "kafka-worker-1", "error": "Cannot connect to broker: UnknownHostException", "severity": "ERROR"},
+            {"source": "sentry", "service": "email-sender", "error": "Failed to resolve SMTP server", "severity": "ERROR"},
+        ],
+        3: [ # Cache Stampede (SEV2)
             {"source": "redis", "service": "redis-cluster-main", "error": "Max memory reached, evicting keys", "severity": "WARN"},
             {"source": "pagerduty", "service": "redis-cluster-main", "error": "High latency alert > 500ms", "severity": "CRITICAL"},
             {"source": "nginx", "service": "api-gateway", "error": "504 Gateway Timeout upstream", "severity": "ERROR"},
             {"source": "sentry", "service": "frontend-app", "error": "ConnectionPoolTimeout fetching user profile", "severity": "ERROR"},
         ],
-        3: [ # 3rd Party Payment Outage
-            {"source": "datadog", "service": "stripe-integration", "error": "503 Service Unavailable from external API", "severity": "ERROR"},
-            {"source": "sentry", "service": "billing-api", "error": "PaymentFailedException: Downstream timeout", "severity": "ERROR"},
-            {"source": "custom-app", "service": "checkout-service", "error": "Cart checkout failed, returning 500", "severity": "ERROR"},
-        ],
-        4: [ # Bad CI/CD Deployment
+        4: [ # Bad CI/CD Deployment (SEV2)
             {"source": "gitlab-ci", "service": "inventory-svc", "error": "Deployment Pipeline Success", "severity": "INFO"},
             {"source": "kubernetes", "service": "inventory-svc-pod-abc", "error": "Back-off restarting failed container", "severity": "CRITICAL"},
             {"source": "kubernetes", "service": "inventory-svc-pod-abc", "error": "Liveness probe failed: HTTP 500", "severity": "ERROR"},
             {"source": "nginx", "service": "api-gateway", "error": "502 Bad Gateway - no healthy upstream", "severity": "ERROR"},
         ],
-        5: [ # DNS Partition
-            {"source": "kubernetes", "service": "coredns", "error": "Query timed out", "severity": "WARN"},
-            {"source": "custom-app", "service": "auth-service", "error": "Name resolution failed for auth.internal", "severity": "ERROR"},
-            {"source": "kafka", "service": "kafka-worker-1", "error": "Cannot connect to broker: UnknownHostException", "severity": "ERROR"},
-            {"source": "sentry", "service": "email-sender", "error": "Failed to resolve SMTP server", "severity": "ERROR"},
+        5: [ # 3rd Party Payment Outage (SEV2/SEV3)
+            {"source": "datadog", "service": "stripe-integration", "error": "503 Service Unavailable from external API", "severity": "ERROR"},
+            {"source": "sentry", "service": "billing-api", "error": "PaymentFailedException: Downstream timeout", "severity": "ERROR"},
+            {"source": "custom-app", "service": "checkout-service", "error": "Cart checkout failed, returning 500", "severity": "ERROR"},
         ]
     }
     return scenarios.get(scenario_id, [])
@@ -133,10 +133,10 @@ def print_menu():
     print("#"*60)
     print("\nSelect a scenario to inject into the alert stream:")
     print("  [1] Primary Database OOM & Failover (SEV1)")
-    print("  [5] DNS/Network Partition (SEV1/SEV2)")
-    print("  [2] Cache Stampede & Gateway Timeouts (SEV2)")
+    print("  [2] DNS/Network Partition (SEV1/SEV2)")
+    print("  [3] Cache Stampede & Gateway Timeouts (SEV2)")
     print("  [4] Bad CI/CD Deployment (CrashLoopBackOff) (SEV2)")
-    print("  [3] Third-Party Payment Gateway Outage (SEV2/SEV3)")
+    print("  [5] Third-Party Payment Gateway Outage (SEV2/SEV3)")
     print("  [0] Just Background Noise (No Incidents) (SEV4)")
     print("  [q] Quit")
     print("\n" + "-"*60)
